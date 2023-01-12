@@ -79,8 +79,8 @@
                   </Group>
                   <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="edtEmail" max="32767" attributes="0"/>
-                      <Component id="edtPassword" min="-2" pref="286" max="-2" attributes="0"/>
+                      <Component id="edtEmail" pref="286" max="32767" attributes="0"/>
+                      <Component id="edtPassword" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <Group type="102" alignment="1" attributes="0">
@@ -100,8 +100,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="edtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="edtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="jLogin" min="-2" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblSexo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="E-mail:"/>
+            <Property name="text" type="java.lang.String" value="Usu&#xe1;rio:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtEmail">
@@ -122,8 +122,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Senha:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="edtPassword">
         </Component>
         <Component class="javax.swing.JButton" name="jLogin">
           <Properties>
@@ -135,6 +133,8 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jLoginActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="edtPassword">
         </Component>
       </SubComponents>
     </Container>

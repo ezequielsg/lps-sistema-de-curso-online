@@ -1,18 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ezequiellabs.curso_online.view;
 
-/**
- *
- * @author jose
- */
+import static br.com.ezequiellabs.curso_online.controller.AuthController.user;
+import javax.swing.JFrame;
+
+
 public class FrDashboard extends javax.swing.JFrame {
 
-    public FrDashboard() {
-        initComponents();        
+    
+    JFrame previewScreen = null;
+    
+    public FrDashboard(JFrame previewScreen) {
+        this.previewScreen = previewScreen;
+        initComponents();  
+        
+        if (user == null ) {
+        return;
+        }
+        
+        if (user.getRole().equals("manager")) {
+            btnCourse.setVisible(true);
+            btnUser.setVisible(true);
+        } else if (user.getRole().equals("suport")) {
+            btnCourse.setVisible(false);
+            btnUser.setVisible(true);
+        } else {
+            btnCourse.setVisible(false);
+            btnUser.setVisible(false);
+        }
     }
 
     /**
@@ -28,7 +42,7 @@ public class FrDashboard extends javax.swing.JFrame {
         btnUser = new javax.swing.JButton();
         btnCourse = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblMenuPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblMenuPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -83,7 +97,9 @@ public class FrDashboard extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCourseActionPerformed
 
-
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {                                  
+        this.previewScreen.setVisible(true);
+    }  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCourse;
     private javax.swing.JButton btnUser;

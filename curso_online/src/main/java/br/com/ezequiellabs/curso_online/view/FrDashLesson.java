@@ -12,7 +12,7 @@ public class FrDashLesson extends javax.swing.JFrame {
 
     JFrame previewScreen;
     LessonController lessonController;
-    int updatingModuleId;
+    int updatingLessonId;
     
     Module module;
 
@@ -22,9 +22,11 @@ public class FrDashLesson extends javax.swing.JFrame {
 
         
         lessonController = new LessonController();
-        updatingModuleId = -1;
+        updatingLessonId = -1;
 
         initComponents();
+        
+        taDescription.setLineWrap(true);
         
         this.enableFields(false);
         this.clearFields();
@@ -43,22 +45,16 @@ public class FrDashLesson extends javax.swing.JFrame {
 
     public void clearFields() {
         edtTitle.setText("");
+        edtYoutube.setText("");
+        taDescription.setText("");
+        updatingLessonId = -1;
     }
     
     
-
-    /**
-     * O ideal seria entregar essa responsabiliadde para o controller para isso
-     * deveriamos passar os componentes edt s
-     *
-     * OU senao criar um novo tipo representationModel, que será a representacao
-     * do modelo na camada VIEW. Com isso criamos uma independencia da camada
-     * MODEL.
-     *
-     * @param a
-     */
     public void fillForm(Lesson a) {
         edtTitle.setText(a.getTitle());
+        edtYoutube.setText(a.getYoutube());
+        taDescription.setText(a.getDescription());
     }
 
     @SuppressWarnings("unchecked")
@@ -74,6 +70,11 @@ public class FrDashLesson extends javax.swing.JFrame {
         panForm = new javax.swing.JPanel();
         lblSexo = new javax.swing.JLabel();
         edtTitle = new javax.swing.JTextField();
+        lblSexo1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        taDescription = new javax.swing.JTextArea();
+        lblSexo2 = new javax.swing.JLabel();
+        edtYoutube = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jLabelTitle = new javax.swing.JLabel();
@@ -132,25 +133,54 @@ public class FrDashLesson extends javax.swing.JFrame {
 
         lblSexo.setText("Título:");
 
+        lblSexo1.setText("Descrição");
+
+        taDescription.setColumns(20);
+        taDescription.setRows(5);
+        jScrollPane2.setViewportView(taDescription);
+
+        lblSexo2.setText("Youtube:");
+
         javax.swing.GroupLayout panFormLayout = new javax.swing.GroupLayout(panForm);
         panForm.setLayout(panFormLayout);
         panFormLayout.setHorizontalGroup(
             panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFormLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(lblSexo)
-                .addGap(23, 23, 23)
-                .addComponent(edtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panFormLayout.createSequentialGroup()
+                        .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSexo1)
+                            .addComponent(lblSexo))
+                        .addGap(23, 23, 23)
+                        .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panFormLayout.createSequentialGroup()
+                                .addComponent(edtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 395, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2)))
+                    .addGroup(panFormLayout.createSequentialGroup()
+                        .addComponent(lblSexo2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(edtYoutube, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(395, 395, 395)))
+                .addContainerGap())
         );
         panFormLayout.setVerticalGroup(
             panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFormLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap()
                 .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSexo))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(edtYoutube, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSexo2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSexo1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -191,7 +221,7 @@ public class FrDashLesson extends javax.swing.JFrame {
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -200,13 +230,13 @@ public class FrDashLesson extends javax.swing.JFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -217,14 +247,14 @@ public class FrDashLesson extends javax.swing.JFrame {
                     .addComponent(btnSalvar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(10, 10, 10)
                     .addComponent(jLabelTitle)
-                    .addContainerGap(485, Short.MAX_VALUE)))
+                    .addContainerGap(634, Short.MAX_VALUE)))
         );
 
         pack();
@@ -238,11 +268,13 @@ public class FrDashLesson extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         try {            
-            if (updatingModuleId > 0) {
-                lessonController.update(updatingModuleId, edtTitle.getText());
+            if (updatingLessonId > 0) {
+                lessonController.update(updatingLessonId, edtTitle.getText(), edtYoutube.getText(), taDescription.getText());
             } else {
-                lessonController.create(edtTitle.getText(), module);
+                lessonController.create(module, edtTitle.getText(), edtYoutube.getText(), taDescription.getText());
             }
+            
+            updatingLessonId = -1;
 
             lessonController.updateTable(jTable, module.getId());
             this.enableFields(false);
@@ -284,7 +316,7 @@ public class FrDashLesson extends javax.swing.JFrame {
             this.clearFields();
             this.enableFields(true);
             this.fillForm(lesson);
-            this.updatingModuleId = module.getId();
+            this.updatingLessonId = lesson.getId();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -307,7 +339,12 @@ public class FrDashLesson extends javax.swing.JFrame {
 
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
         if (evt.getClickCount() == 2) {
-            btnEditarActionPerformed(null);
+            Lesson lesson = (Lesson) this.getObjectSelectOnGrid();
+            
+             this.clearFields();
+            this.enableFields(true);
+            this.fillForm(lesson);
+            this.updatingLessonId = lesson.getId();
         }
     }//GEN-LAST:event_jTableMouseClicked
 
@@ -323,11 +360,16 @@ public class FrDashLesson extends javax.swing.JFrame {
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField edtTitle;
+    private javax.swing.JTextField edtYoutube;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable;
     private javax.swing.JLabel lblSexo;
+    private javax.swing.JLabel lblSexo1;
+    private javax.swing.JLabel lblSexo2;
     private javax.swing.JPanel panForm;
+    private javax.swing.JTextArea taDescription;
     // End of variables declaration//GEN-END:variables
 }

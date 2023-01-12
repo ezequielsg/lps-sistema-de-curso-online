@@ -44,6 +44,8 @@ public class FrDashModule extends javax.swing.JFrame {
 
     public void clearFields() {
         edtTitle.setText("");
+        
+        updatingModuleId = -1;
     }
     
     
@@ -252,6 +254,8 @@ public class FrDashModule extends javax.swing.JFrame {
             } else {
                 moduleController.create(edtTitle.getText(), course);
             }
+            
+            updatingModuleId = -1;
 
             moduleController.updateTable(jTable, course.getId());
             this.enableFields(false);
@@ -297,14 +301,6 @@ public class FrDashModule extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    /**
-     * Retorna o objeto (classe) da linha selecionada na grid.
-     *
-     * Uso a estratégia do metodo getValueAt() la na TableModel, receber coluna
-     * -1 e retornar o objeto ao inves de uma célula.
-     *
-     * @return
-     */
     private Object getObjectSelectOnGrid() {
         int rowCliked = jTable.getSelectedRow();
         Object obj = null;

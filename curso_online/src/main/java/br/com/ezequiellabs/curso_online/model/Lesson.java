@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
@@ -25,13 +26,17 @@ public class Lesson implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
+    private String youtube;
+    @Type(type="text")
+    private String description;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private Module module;
 
     public Lesson() {
         this.id = -1;
         this.title = "";
+        this.description = "";
 
     }        
 

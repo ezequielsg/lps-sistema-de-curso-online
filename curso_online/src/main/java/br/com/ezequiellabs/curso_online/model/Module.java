@@ -26,7 +26,7 @@ public class Module implements Serializable {
     private Integer id;
     private String title;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private Course course;
 
     public Module() {

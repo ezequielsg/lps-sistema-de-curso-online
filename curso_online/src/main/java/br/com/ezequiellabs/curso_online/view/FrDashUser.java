@@ -13,8 +13,8 @@ public class FrDashUser extends javax.swing.JFrame {
     UserController userController;
     int updatingUserId;
 
-    public FrDashUser(JFrame telaQueChamou) {
-        this.previewScreen = telaQueChamou;
+    public FrDashUser(JFrame previewScreen) {
+        this.previewScreen = previewScreen;
         
         userController = new UserController();
         updatingUserId = -1;
@@ -27,17 +27,18 @@ public class FrDashUser extends javax.swing.JFrame {
         userController.updateTable(grdTable);
     }
 
-    public void enableFields(boolean flag) {
+    private void enableFields(boolean flag) {
         for (int i = 0; i < panForm.getComponents().length; i++) {
             panForm.getComponent(i).setEnabled(flag);
         }
     }
 
-    public void clearFields() {
+    private void clearFields() {
         edtNome.setText("");
         edtEmail.setText("");
         edtPassword.setText("");
         cbRole.setSelectedIndex(0);
+        updatingUserId = -1;
     }
     
     
@@ -266,6 +267,7 @@ public class FrDashUser extends javax.swing.JFrame {
             userController.updateTable(grdTable);
             this.enableFields(false);
             this.clearFields();
+            updatingUserId = -1;
         } catch (UserException e) {
             System.err.println(e.getMessage());
             JOptionPane.showMessageDialog(this, e.getMessage());

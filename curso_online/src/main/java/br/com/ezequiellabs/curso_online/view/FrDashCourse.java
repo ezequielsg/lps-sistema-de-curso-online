@@ -36,6 +36,8 @@ public class FrDashCourse extends javax.swing.JFrame {
     public void clearFields() {
         edtTitle.setText("");
         edtAuthor.setText("");
+        
+        updatingCourseId = -1;
     }
     
     
@@ -224,6 +226,9 @@ public class FrDashCourse extends javax.swing.JFrame {
             } else {
                 courseController.create(edtTitle.getText(), edtAuthor.getText());
             }
+            
+            updatingCourseId = -1;
+            
 
             courseController.updateTable(table);
             this.enableFields(false);

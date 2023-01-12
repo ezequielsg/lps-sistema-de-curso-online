@@ -31,7 +31,7 @@ public class Course implements Serializable {
     private String author;
     
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private User user;
     
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)

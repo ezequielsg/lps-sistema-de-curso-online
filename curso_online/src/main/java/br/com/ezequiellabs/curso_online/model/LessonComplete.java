@@ -26,10 +26,10 @@ public class LessonComplete implements Serializable {
     private Integer id;
     
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private User user;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private Lesson lesson;
     
 
