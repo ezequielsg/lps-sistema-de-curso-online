@@ -9,9 +9,9 @@ package br.com.ezequiellabs.curso_online.view;
  *
  * @author jose
  */
-public class FrDashboard extends javax.swing.JFrame {
+public class FrMemberArea extends javax.swing.JFrame {
 
-    public FrDashboard() {
+    public FrMemberArea() {
         initComponents();        
     }
 
@@ -32,7 +32,7 @@ public class FrDashboard extends javax.swing.JFrame {
 
         lblMenuPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblMenuPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMenuPrincipal.setText("Dashboard");
+        lblMenuPrincipal.setText("Menu Principal");
 
         btnUser.setText("Usuários");
         btnUser.addActionListener(new java.awt.event.ActionListener() {

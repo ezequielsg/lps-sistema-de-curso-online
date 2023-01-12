@@ -1,13 +1,10 @@
 package br.com.ezequiellabs.curso_online.model;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -28,6 +25,7 @@ public class User implements Serializable {
     private String name;
     private String email;    
     private String password;
+    private String role;
     
     
 
@@ -36,7 +34,8 @@ public class User implements Serializable {
         this.id = -1;
         this.name = "";
         this.email = "";        
-        this.password = "";
+        this.password = "";    
+        this.role = "";
 
     }        
 
