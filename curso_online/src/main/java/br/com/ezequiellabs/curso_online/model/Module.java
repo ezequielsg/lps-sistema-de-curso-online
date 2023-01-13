@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class Module implements Serializable {
     private String title;
     
     @ManyToOne()
+    @JoinColumn(name="course_id")
     private Course course;
 
     public Module() {

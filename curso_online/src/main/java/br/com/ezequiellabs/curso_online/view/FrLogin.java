@@ -133,7 +133,7 @@ public class FrLogin extends javax.swing.JFrame {
             User user = authController.login(edtEmail.getText(), edtPassword.getText());
             
             if (user != null) {
-                FrMemberArea screen = new FrMemberArea();
+                FrMemberArea screen = new FrMemberArea(null);
                 screen.setVisible(true);
                 this.setVisible(false);
             } else {

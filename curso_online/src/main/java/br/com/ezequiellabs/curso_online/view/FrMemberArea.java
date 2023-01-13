@@ -1,8 +1,9 @@
 package br.com.ezequiellabs.curso_online.view;
 
-import static br.com.ezequiellabs.curso_online.controller.AuthController.user;
 import br.com.ezequiellabs.curso_online.controller.CourseController;
 import br.com.ezequiellabs.curso_online.model.Course;
+import br.com.ezequiellabs.curso_online.model.User;
+import static br.com.ezequiellabs.curso_online.controller.AuthController.currentUser;
 
 
 public class FrMemberArea extends javax.swing.JFrame {
@@ -11,26 +12,24 @@ public class FrMemberArea extends javax.swing.JFrame {
     
     CourseController courseController;
     
-    public FrMemberArea() {
-        initComponents(); 
+    private User user;
+    
+    public FrMemberArea(User user) {
+        this.user = user;
         
+        initComponents(); 
         
         courseController = new CourseController();
         
         
-        if (user == null ) {
-        return;
-        }
+        courseController.updateMemberTable(table, user != null ? user : currentUser);
         
-        if (user.getRole().equals("suport") || user.getRole().equals("manager")) {
+        if (user == null && currentUser != null && (currentUser.getRole().equals("suport") || currentUser.getRole().equals("manager"))) {
             btnDash.setVisible(true);
         } else {
             btnDash.setVisible(false);
-        }
+        } 
         
-        
-        
-        courseController.updateTable(table);
     }
     
     private Object getObjectSelectOnGrid() {
@@ -52,7 +51,7 @@ public class FrMemberArea extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblMenuPrincipal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblMenuPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -24,7 +24,7 @@ public class FrDashCourse extends javax.swing.JFrame {
         this.enableFields(false);
         this.clearFields();
 
-        courseController.updateTable(table);
+        courseController.updateDashTable(table);
     }
 
     public void enableFields(boolean flag) {
@@ -230,7 +230,7 @@ public class FrDashCourse extends javax.swing.JFrame {
             updatingCourseId = -1;
             
 
-            courseController.updateTable(table);
+            courseController.updateDashTable(table);
             this.enableFields(false);
             this.clearFields();
         } catch (CourseException e) {
@@ -253,7 +253,7 @@ public class FrDashCourse extends javax.swing.JFrame {
             try {
                 courseController.remove(course);
 
-                courseController.updateTable(table);
+                courseController.updateDashTable(table);
                 JOptionPane.showMessageDialog(this, "Exclusão feita com sucesso!");
             } catch (CourseException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());

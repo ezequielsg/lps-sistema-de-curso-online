@@ -1,6 +1,7 @@
 package br.com.ezequiellabs.curso_online.controller;
 
 import br.com.ezequiellabs.curso_online.model.Course;
+import br.com.ezequiellabs.curso_online.model.User;
 import br.com.ezequiellabs.curso_online.model.dao.jpa.CourseDAO;
 import br.com.ezequiellabs.curso_online.model.exceptions.CourseException;
 import br.com.ezequiellabs.curso_online.model.valid.ValidateCourse;
@@ -32,8 +33,12 @@ public class CourseController {
         repositorio.save(course);
     }    
 
-    public void updateTable(JTable grd) {
+    public void updateDashTable(JTable grd) {
         Util.jTableShow(grd, new TMCadCourse(repositorio.findAll()), null);
+    }
+    
+    public void updateMemberTable(JTable grd, User user) {
+        Util.jTableShow(grd, new TMCourse(repositorio.findAll(), user), null);
     }
 
     public void remove(Course course) {

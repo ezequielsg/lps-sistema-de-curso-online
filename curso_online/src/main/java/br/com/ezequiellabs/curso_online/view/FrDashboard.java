@@ -1,7 +1,7 @@
 package br.com.ezequiellabs.curso_online.view;
 
-import static br.com.ezequiellabs.curso_online.controller.AuthController.user;
 import javax.swing.JFrame;
+import static br.com.ezequiellabs.curso_online.controller.AuthController.currentUser;
 
 
 public class FrDashboard extends javax.swing.JFrame {
@@ -13,14 +13,14 @@ public class FrDashboard extends javax.swing.JFrame {
         this.previewScreen = previewScreen;
         initComponents();  
         
-        if (user == null ) {
+        if (currentUser == null ) {
         return;
         }
         
-        if (user.getRole().equals("manager")) {
+        if (currentUser.getRole().equals("manager")) {
             btnCourse.setVisible(true);
             btnUser.setVisible(true);
-        } else if (user.getRole().equals("suport")) {
+        } else if (currentUser.getRole().equals("suport")) {
             btnCourse.setVisible(false);
             btnUser.setVisible(true);
         } else {

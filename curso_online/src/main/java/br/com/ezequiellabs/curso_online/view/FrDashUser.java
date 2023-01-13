@@ -25,6 +25,9 @@ public class FrDashUser extends javax.swing.JFrame {
         this.clearFields();
 
         userController.updateTable(grdTable);
+        
+        btnProgress.setVisible(false);
+        btnLessonComplete.setVisible(false);
     }
 
     private void enableFields(boolean flag) {
@@ -39,6 +42,8 @@ public class FrDashUser extends javax.swing.JFrame {
         edtPassword.setText("");
         cbRole.setSelectedIndex(0);
         updatingUserId = -1;
+        btnProgress.setVisible(false);
+        btnLessonComplete.setVisible(false);
     }
     
     
@@ -71,6 +76,8 @@ public class FrDashUser extends javax.swing.JFrame {
         lblNome1 = new javax.swing.JLabel();
         edtPassword = new javax.swing.JPasswordField();
         cbRole = new javax.swing.JComboBox<>();
+        btnProgress = new javax.swing.JButton();
+        btnLessonComplete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         grdTable = new javax.swing.JTable();
 
@@ -143,32 +150,53 @@ public class FrDashUser extends javax.swing.JFrame {
 
         cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "member", "suport", "manager" }));
 
+        btnProgress.setText("Progresso");
+        btnProgress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProgressActionPerformed(evt);
+            }
+        });
+
+        btnLessonComplete.setText("Aulas assistidas");
+        btnLessonComplete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLessonCompleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panFormLayout = new javax.swing.GroupLayout(panForm);
         panForm.setLayout(panFormLayout);
         panFormLayout.setHorizontalGroup(
             panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFormLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panFormLayout.createSequentialGroup()
-                        .addComponent(lblSexo)
-                        .addGap(18, 18, 18)
-                        .addComponent(edtEmail))
-                    .addGroup(panFormLayout.createSequentialGroup()
-                        .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
                 .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panFormLayout.createSequentialGroup()
-                        .addComponent(lblPassword)
+                        .addGap(23, 23, 23)
+                        .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panFormLayout.createSequentialGroup()
+                                .addComponent(lblSexo)
+                                .addGap(18, 18, 18)
+                                .addComponent(edtEmail))
+                            .addGroup(panFormLayout.createSequentialGroup()
+                                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panFormLayout.createSequentialGroup()
+                                .addComponent(lblPassword)
+                                .addGap(18, 18, 18)
+                                .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panFormLayout.createSequentialGroup()
+                                .addComponent(lblNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panFormLayout.createSequentialGroup()
-                        .addComponent(lblNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(btnProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(104, Short.MAX_VALUE))
+                        .addComponent(btnLessonComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panFormLayout.setVerticalGroup(
             panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +214,11 @@ public class FrDashUser extends javax.swing.JFrame {
                         .addComponent(lblSexo)
                         .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProgress)
+                    .addComponent(btnLessonComplete))
+                .addContainerGap())
         );
 
         grdTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -212,6 +244,11 @@ public class FrDashUser extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -222,12 +259,7 @@ public class FrDashUser extends javax.swing.JFrame {
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 281, Short.MAX_VALUE))
-            .addComponent(panForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGap(18, 281, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +275,7 @@ public class FrDashUser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -320,6 +352,8 @@ public class FrDashUser extends javax.swing.JFrame {
             this.enableFields(true);
             this.preencherFormulario(updatingUser);
             this.updatingUserId = updatingUser.getId();
+            btnProgress.setVisible(true);
+            btnLessonComplete.setVisible(true);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -354,12 +388,32 @@ public class FrDashUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_edtPasswordActionPerformed
 
+    private void btnProgressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgressActionPerformed
+        User user = (User) this.getObjectSelectOnGrid();
+
+        if (user == null) return;
+
+        FrMemberArea screen = new FrMemberArea(user);
+        screen.setVisible(true);
+    }//GEN-LAST:event_btnProgressActionPerformed
+
+    private void btnLessonCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLessonCompleteActionPerformed
+        User user = (User) this.getObjectSelectOnGrid();
+
+        if (user == null) return;
+
+        FrUserLessonComplete screen = new FrUserLessonComplete(this, user);
+        screen.setVisible(true);
+    }//GEN-LAST:event_btnLessonCompleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnLessonComplete;
     private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnProgress;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cbRole;
     private javax.swing.JTextField edtEmail;

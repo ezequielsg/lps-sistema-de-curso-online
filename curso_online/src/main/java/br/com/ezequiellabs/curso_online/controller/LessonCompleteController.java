@@ -5,6 +5,7 @@ import br.com.ezequiellabs.curso_online.model.LessonComplete;
 import br.com.ezequiellabs.curso_online.model.User;
 import br.com.ezequiellabs.curso_online.model.dao.jpa.LessonCompleteDAO;
 import br.com.ezequiellabs.curso_online.model.exceptions.LessonException;
+import javax.swing.JTable;
 
 
 public class LessonCompleteController {
@@ -52,6 +53,12 @@ public class LessonCompleteController {
         } else {
             throw new LessonException("Error - Marcação de aula inexistente.");
         }
-    }    
+    }  
+    
+    
+
+    public void updateTable(JTable grd, User user) {
+        Util.jTableShow(grd, new TMCadLesson(repositorio.findAllCompleteLessonsByUser(user)), null);
+    }
 
 }

@@ -1,17 +1,29 @@
 package br.com.ezequiellabs.curso_online.controller;
 import br.com.ezequiellabs.curso_online.model.Course;
+import br.com.ezequiellabs.curso_online.model.User;
+import br.com.ezequiellabs.curso_online.model.dao.jpa.CourseDAO;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class TMCadCourse extends AbstractTableModel {
+public class TMCourse extends AbstractTableModel {
 
     private List<Course> lista;
     
     private final int COL_TITLE = 0;   
     private final int COL_AUTHOR = 1;  
+    private final int COL_PROGRESS = 2;   
+    
+    private User user;
+    
+    private CourseDAO repositorio;
+    private ProgressController progressController;
 
-    public TMCadCourse(List<Course> lst) {        
-        lista = lst;        
+    public TMCourse(List<Course> lst, User user) {        
+        this.lista = lst;   
+        this.user = user;
+        
+        repositorio = new CourseDAO();
+        progressController = new ProgressController();
     }
 
     @Override
@@ -21,7 +33,7 @@ public class TMCadCourse extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -39,6 +51,8 @@ public class TMCadCourse extends AbstractTableModel {
                     return aux.getTitle();
                 case COL_AUTHOR:
                     return aux.getAuthor();
+                case COL_PROGRESS:
+                    return progressController.getProgressByCourse(user, aux) + "%";
                  
                
                 default: 
@@ -61,6 +75,9 @@ public class TMCadCourse extends AbstractTableModel {
                 return "Título";
             case COL_AUTHOR:
                 return "Autor";
+            case COL_PROGRESS:
+                return "Progresso";
+                        
             default:
                 break;
         }

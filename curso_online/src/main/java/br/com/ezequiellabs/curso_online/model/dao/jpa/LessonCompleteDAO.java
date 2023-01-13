@@ -1,8 +1,10 @@
 package br.com.ezequiellabs.curso_online.model.dao.jpa;
 
 import br.com.ezequiellabs.curso_online.factory.Database;
+import br.com.ezequiellabs.curso_online.model.Course;
 import br.com.ezequiellabs.curso_online.model.Lesson;
 import br.com.ezequiellabs.curso_online.model.LessonComplete;
+import br.com.ezequiellabs.curso_online.model.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -70,6 +72,17 @@ public class LessonCompleteDAO {
         }
     }
     
+    public List<Lesson> findAllCompleteLessonsByUser(User user) {
+        sql = " SELECT l "
+                + " FROM LessonComplete lc, Lesson l WHERE lc.user = :user AND lc.lesson = l.id";
+
+        qry = this.entityManager.createQuery(sql);
+        qry.setParameter("user", user);
+        
+        List lst = qry.getResultList();
+        return (List<Lesson>) lst;
+    }
+    
 //     public List<Lesson> findAllByModule(Integer module_id) {
 //        //Está é um HQL (Hibernate Query Language)
 //        sql = " SELECT f "
@@ -81,11 +94,34 @@ public class LessonCompleteDAO {
 //        List lst = qry.getResultList();
 //        return (List<Lesson>) lst;
 //    }
+    
+    public List<LessonComplete> findAllByUserAndCourse(User user, Course course) {
+        sql = " SELECT lc "
+                + " FROM LessonComplete lc, Lesson l, Module m WHERE l.module = m.id AND m.course = :course AND lc.user = :user AND lc.lesson = l.id";
 
-    public List<LessonComplete> findAll(String user_id) {
+        qry = this.entityManager.createQuery(sql);
+        qry.setParameter("user", user);
+        qry.setParameter("course", course);
+        
+        List lst = qry.getResultList();
+        return (List<LessonComplete>) lst;
+    }
+    
+    public Long findAllByUserAndCourseCount(User user, Course course) {
+        sql = " SELECT count(lc) "
+                + " FROM LessonComplete lc, Lesson l, Module m WHERE l.module = m.id AND m.course = :course AND lc.user = :user AND lc.lesson = l.id";
+
+        qry = this.entityManager.createQuery(sql);
+        qry.setParameter("user", user);
+        qry.setParameter("course", course);
+        
+        return (Long) qry.getSingleResult();
+    }
+
+    public List<LessonComplete> findAll(Integer user_id) {
         sql = " SELECT f "
-                + " FROM Lesson f"
-                + "WHERE user_id = :userId";
+                + " FROM LessonComplete f "
+                + " WHERE user_id = :user_id";
 
         qry = this.entityManager.createQuery(sql);
         qry.setParameter("user_id", user_id);

@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,9 +28,11 @@ public class LessonComplete implements Serializable {
     
     
     @ManyToOne()
+    @JoinColumn(name="user_id")
     private User user;
     
     @ManyToOne()
+    @JoinColumn(name="lesson_id")
     private Lesson lesson;
     
 

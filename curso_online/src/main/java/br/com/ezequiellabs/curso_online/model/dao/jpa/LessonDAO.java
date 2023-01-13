@@ -1,6 +1,7 @@
 package br.com.ezequiellabs.curso_online.model.dao.jpa;
 
 import br.com.ezequiellabs.curso_online.factory.Database;
+import br.com.ezequiellabs.curso_online.model.Course;
 import br.com.ezequiellabs.curso_online.model.Lesson;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -51,9 +52,9 @@ public class LessonDAO {
         }
     }
     
-     public List<Lesson> findAllByModule(Integer module_id) {
+    public List<Lesson> findAllByModule(Integer module_id) {
         //Está é um HQL (Hibernate Query Language)
-        sql = " SELECT f "
+        sql = "SELECT f "
                 + " FROM Lesson f WHERE module_id = :module_id";
 
         qry = this.entityManager.createQuery(sql);
@@ -61,6 +62,26 @@ public class LessonDAO {
         
         List lst = qry.getResultList();
         return (List<Lesson>) lst;
+    }
+    
+    public List<Lesson> findAllByCourse(Course course) {
+        //Está é um HQL (Hibernate Query Language)
+        sql = " SELECT l FROM Lesson l, Module m WHERE l.module = m.id AND m.course = :course";
+
+        qry = this.entityManager.createQuery(sql);
+        qry.setParameter("course", course);
+        
+        List lst = qry.getResultList();
+        return (List<Lesson>) lst;
+    }
+    
+    public Long findAllByCourseCount(Course course) {
+        sql = " SELECT count(l) FROM Lesson l, Module m WHERE l.module = m.id AND m.course = :course";
+
+        qry = this.entityManager.createQuery(sql);
+        qry.setParameter("course", course);
+        
+        return (Long) qry.getSingleResult();
     }
 
     public List<Lesson> findAll() {

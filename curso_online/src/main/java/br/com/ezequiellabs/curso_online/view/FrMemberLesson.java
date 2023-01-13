@@ -1,6 +1,5 @@
 package br.com.ezequiellabs.curso_online.view;
 
-import static br.com.ezequiellabs.curso_online.controller.AuthController.user;
 import br.com.ezequiellabs.curso_online.controller.LessonCompleteController;
 import br.com.ezequiellabs.curso_online.controller.LessonController;
 import br.com.ezequiellabs.curso_online.model.Lesson;
@@ -10,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javax.swing.JFrame;
+import static br.com.ezequiellabs.curso_online.controller.AuthController.currentUser;
 
 
 public class FrMemberLesson extends javax.swing.JFrame {
@@ -44,6 +44,7 @@ public class FrMemberLesson extends javax.swing.JFrame {
             WebView view = new WebView();
             engine = view.getEngine();
             engine.load("https://www.youtube.com/embed/" + lesson.getYoutube());
+//            engine.load("https://www.youtube.com/watch?v=" + lesson.getYoutube());
             Scene scene = new Scene(view);
             jfxPanel.setScene(scene);
         });
@@ -79,9 +80,9 @@ public class FrMemberLesson extends javax.swing.JFrame {
    
    
     public void updateComplete() {
-        if (user == null) return;
+        if (currentUser == null) return;
         
-        if (lessonCompleteController.completed(user, lesson)) {
+        if (lessonCompleteController.completed(currentUser, lesson)) {
             cbComplete.setSelected(true);
         } else {
             cbComplete.setSelected(false);
@@ -196,9 +197,9 @@ public class FrMemberLesson extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void cbCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCompleteActionPerformed
-        if (user == null) return;
+        if (currentUser == null) return;
         
-        this.lessonCompleteController.toggle(user,  lesson);
+        this.lessonCompleteController.toggle(currentUser,  lesson);
         
         this.updateComplete();
     }//GEN-LAST:event_cbCompleteActionPerformed

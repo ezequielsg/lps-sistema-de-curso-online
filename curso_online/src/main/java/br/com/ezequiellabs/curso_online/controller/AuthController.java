@@ -5,7 +5,7 @@ import br.com.ezequiellabs.curso_online.model.dao.jpa.UserDAO;
 
 public class AuthController {
     
-    public static User user = null;
+    public static User currentUser = null;
 
     private UserDAO repositorio;
 
@@ -16,7 +16,7 @@ public class AuthController {
     public User login(String email, String password) {
         User user = repositorio.login(email, password);
         
-        this.user = user;
+        this.currentUser = user;
                 
         return user;
     }    
