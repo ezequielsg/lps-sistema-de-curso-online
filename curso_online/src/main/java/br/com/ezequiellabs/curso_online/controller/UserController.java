@@ -15,9 +15,9 @@ public class UserController {
         repositorio = new UserDAO();
     }
 
-    public void create(String nome, String email, String password, String role) {
+    public void create(String nome, String email, String username, String password, String role) {
         User user = new User();
-        ValidateUser.validate(user, nome, email, password, role);
+        ValidateUser.validate(user, nome, email, username, password, role);
                 
         if (repositorio.findByEmail(user.getEmail()) != null) {
             throw new UserException("Error - Já existe um usuário com este 'email'.");
@@ -26,9 +26,9 @@ public class UserController {
         }
     }    
     
-    public void update(int id, String nome, String email, String password, String role) {
+    public void update(int id, String nome, String email, String username, String password, String role) {
         User user = repositorio.find(id);
-        ValidateUser.validate(user, nome, email, password, role);
+        ValidateUser.validate(user, nome, email, username, password, role);
         repositorio.save(user);
     }    
 

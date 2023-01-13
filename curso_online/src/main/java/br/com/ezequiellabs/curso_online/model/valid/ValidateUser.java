@@ -6,7 +6,7 @@ import br.com.ezequiellabs.curso_online.model.exceptions.UserException;
 
 public class ValidateUser {
     
-    public static void validate(User user, String name, String email, String password, String role){
+    public static void validate(User user, String name, String email, String username, String password, String role){
         if (name.isEmpty())
             throw new UserException("Error - Campo vazio: 'name'.");
         user.setName(name);
@@ -14,6 +14,10 @@ public class ValidateUser {
         if (email.isEmpty()) 
             throw new UserException("Error - Campo vazio: 'email'.");                
         user.setEmail(email);
+        
+        if (username.isEmpty()) 
+            throw new UserException("Error - Campo vazio: 'username'.");                
+        user.setUsername(username);
         
         if (password.isEmpty()) 
             throw new UserException("Error - Campo vazio: 'password'.");                

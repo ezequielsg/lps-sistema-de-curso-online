@@ -38,7 +38,7 @@ public class FrLogin extends javax.swing.JFrame {
         lblMenuPrincipal1 = new javax.swing.JLabel();
         panForm = new javax.swing.JPanel();
         lblSexo = new javax.swing.JLabel();
-        edtEmail = new javax.swing.JTextField();
+        edtUsername = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
         jLogin = new javax.swing.JButton();
         edtPassword = new javax.swing.JPasswordField();
@@ -54,6 +54,12 @@ public class FrLogin extends javax.swing.JFrame {
         lblMenuPrincipal1.setText("Entrar");
 
         lblSexo.setText("Usuário:");
+
+        edtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtUsernameActionPerformed(evt);
+            }
+        });
 
         lblPassword.setText("Senha:");
 
@@ -75,7 +81,7 @@ public class FrLogin extends javax.swing.JFrame {
                     .addComponent(lblPassword))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(edtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                    .addComponent(edtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
                     .addComponent(edtPassword)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormLayout.createSequentialGroup()
                 .addContainerGap(128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,7 +94,7 @@ public class FrLogin extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSexo)
-                    .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
@@ -130,7 +136,7 @@ public class FrLogin extends javax.swing.JFrame {
         try { 
             this.enableFields(false);
             
-            User user = authController.login(edtEmail.getText(), edtPassword.getText());
+            User user = authController.login(edtUsername.getText(), edtPassword.getText());
             
             if (user != null) {
                 FrMemberArea screen = new FrMemberArea(null);
@@ -158,10 +164,14 @@ public class FrLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLoginActionPerformed
 
+    private void edtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtUsernameActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField edtEmail;
     private javax.swing.JPasswordField edtPassword;
+    private javax.swing.JTextField edtUsername;
     private javax.swing.JButton jLogin;
     private javax.swing.JLabel lblMenuPrincipal;
     private javax.swing.JLabel lblMenuPrincipal1;

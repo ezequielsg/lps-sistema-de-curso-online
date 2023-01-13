@@ -79,7 +79,7 @@
                   </Group>
                   <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="edtEmail" pref="286" max="32767" attributes="0"/>
+                      <Component id="edtUsername" pref="286" max="32767" attributes="0"/>
                       <Component id="edtPassword" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -96,7 +96,7 @@
                   <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblSexo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="edtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="edtUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -116,7 +116,10 @@
             <Property name="text" type="java.lang.String" value="Usu&#xe1;rio:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="edtEmail">
+        <Component class="javax.swing.JTextField" name="edtUsername">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edtUsernameActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPassword">
           <Properties>

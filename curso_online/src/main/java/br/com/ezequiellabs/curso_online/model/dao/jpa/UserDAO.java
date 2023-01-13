@@ -35,13 +35,13 @@ public class UserDAO {
         this.entityManager.getTransaction().commit();
     }
     
-    public User login(String email, String password) {
+    public User login(String username, String password) {
         sql = " SELECT f "
                 + " FROM User f"
-                + " WHERE email like :email"
+                + " WHERE username like :username"
                 + " AND password = :password ";
         qry = this.entityManager.createQuery(sql);
-        qry.setParameter("email", email);
+        qry.setParameter("username", username);
         qry.setParameter("password", password);
         
         List lst = qry.getResultList();
@@ -52,9 +52,9 @@ public class UserDAO {
         
         sql = " SELECT f "
                 + " FROM User f"
-                + " WHERE email like :email";
+                + " WHERE username like :username";
         qry = this.entityManager.createQuery(sql);
-        qry.setParameter("email", email);
+        qry.setParameter("username", username);
         
         lst = qry.getResultList();
         

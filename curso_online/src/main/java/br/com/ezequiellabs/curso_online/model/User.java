@@ -1,6 +1,7 @@
 package br.com.ezequiellabs.curso_online.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,10 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String email;    
+    @Column(unique = true)
+    private String email;   
+    @Column(unique = true)
+    private String username;    
     private String password;
     private String role;
     
@@ -33,7 +37,8 @@ public class User implements Serializable {
     public User() {
         this.id = -1;
         this.name = "";
-        this.email = "";        
+        this.email = "";  
+        this.username = "";        
         this.password = "";    
         this.role = "";
 

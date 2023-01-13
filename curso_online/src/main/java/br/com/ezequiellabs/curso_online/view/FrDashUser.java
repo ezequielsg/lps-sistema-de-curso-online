@@ -39,6 +39,7 @@ public class FrDashUser extends javax.swing.JFrame {
     private void clearFields() {
         edtNome.setText("");
         edtEmail.setText("");
+        edtUsername.setText("");
         edtPassword.setText("");
         cbRole.setSelectedIndex(0);
         updatingUserId = -1;
@@ -52,6 +53,7 @@ public class FrDashUser extends javax.swing.JFrame {
     public void preencherFormulario(User a) {
         edtNome.setText(a.getName());
         edtEmail.setText(a.getEmail());
+        edtUsername.setText(a.getUsername());
         edtPassword.setText(a.getPassword());
         cbRole.setSelectedItem(a.getRole() == null ? "member" : a.getRole());
     }
@@ -78,6 +80,8 @@ public class FrDashUser extends javax.swing.JFrame {
         cbRole = new javax.swing.JComboBox<>();
         btnProgress = new javax.swing.JButton();
         btnLessonComplete = new javax.swing.JButton();
+        lblSexo1 = new javax.swing.JLabel();
+        edtUsername = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         grdTable = new javax.swing.JTable();
 
@@ -164,39 +168,44 @@ public class FrDashUser extends javax.swing.JFrame {
             }
         });
 
+        lblSexo1.setText("Username:");
+
+        edtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtUsernameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panFormLayout = new javax.swing.GroupLayout(panForm);
         panForm.setLayout(panFormLayout);
         panFormLayout.setHorizontalGroup(
             panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFormLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSexo1)
+                    .addComponent(lblSexo)
+                    .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(edtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                    .addComponent(edtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                    .addComponent(edtUsername))
+                .addGap(18, 18, 18)
                 .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panFormLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panFormLayout.createSequentialGroup()
-                                .addComponent(lblSexo)
-                                .addGap(18, 18, 18)
-                                .addComponent(edtEmail))
-                            .addGroup(panFormLayout.createSequentialGroup()
-                                .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblPassword)
                         .addGap(18, 18, 18)
-                        .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panFormLayout.createSequentialGroup()
-                                .addComponent(lblPassword)
-                                .addGap(18, 18, 18)
-                                .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panFormLayout.createSequentialGroup()
-                                .addComponent(lblNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panFormLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panFormLayout.createSequentialGroup()
+                        .addComponent(btnProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnLessonComplete, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         panFormLayout.setVerticalGroup(
             panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,11 +223,18 @@ public class FrDashUser extends javax.swing.JFrame {
                         .addComponent(lblSexo)
                         .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(edtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProgress)
-                    .addComponent(btnLessonComplete))
-                .addContainerGap())
+                .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panFormLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSexo1)
+                            .addComponent(edtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panFormLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLessonComplete)
+                            .addComponent(btnProgress))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         grdTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -291,9 +307,9 @@ public class FrDashUser extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         try {            
             if (updatingUserId > 0) {
-                userController.update(updatingUserId, edtNome.getText(), edtEmail.getText(), edtPassword.getText(), cbRole.getSelectedItem().toString());
+                userController.update(updatingUserId, edtNome.getText(), edtEmail.getText(), edtUsername.getText(), edtPassword.getText(), cbRole.getSelectedItem().toString());
             } else {
-                userController.create(edtNome.getText(), edtEmail.getText(), edtPassword.getText(), cbRole.getSelectedItem().toString());
+                userController.create(edtNome.getText(), edtEmail.getText(), edtUsername.getText(), edtPassword.getText(), cbRole.getSelectedItem().toString());
             }
 
             userController.updateTable(grdTable);
@@ -406,6 +422,10 @@ public class FrDashUser extends javax.swing.JFrame {
         screen.setVisible(true);
     }//GEN-LAST:event_btnLessonCompleteActionPerformed
 
+    private void edtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtUsernameActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -419,6 +439,7 @@ public class FrDashUser extends javax.swing.JFrame {
     private javax.swing.JTextField edtEmail;
     private javax.swing.JTextField edtNome;
     private javax.swing.JPasswordField edtPassword;
+    private javax.swing.JTextField edtUsername;
     private javax.swing.JTable grdTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -426,6 +447,7 @@ public class FrDashUser extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblSexo;
+    private javax.swing.JLabel lblSexo1;
     private javax.swing.JPanel panForm;
     // End of variables declaration//GEN-END:variables
 }

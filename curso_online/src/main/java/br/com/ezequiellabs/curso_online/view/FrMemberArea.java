@@ -19,6 +19,12 @@ public class FrMemberArea extends javax.swing.JFrame {
         
         initComponents(); 
         
+        if (user == null) {
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        } else {
+            setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        }
+        
         courseController = new CourseController();
         
         
@@ -29,6 +35,8 @@ public class FrMemberArea extends javax.swing.JFrame {
         } else {
             btnDash.setVisible(false);
         } 
+        
+        
         
     }
     

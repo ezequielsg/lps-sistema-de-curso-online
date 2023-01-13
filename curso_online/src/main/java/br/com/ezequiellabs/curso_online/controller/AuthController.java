@@ -13,8 +13,8 @@ public class AuthController {
         repositorio = new UserDAO();
     }
 
-    public User login(String email, String password) {
-        User user = repositorio.login(email, password);
+    public User login(String username, String password) {
+        User user = repositorio.login(username, password);
         
         this.currentUser = user;
                 
